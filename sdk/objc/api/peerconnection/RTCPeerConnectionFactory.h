@@ -75,6 +75,14 @@ RTC_OBJC_EXPORT
                         constraints:(RTC_OBJC_TYPE(RTCMediaConstraints) *)constraints
                            observer:(void *)observer;
 
+/** Initialize an RTCPeerConnection with a configuration, constraints, and
+ *  delegate. dStar changed.
+ */
+- (RTC_OBJC_TYPE(RTCPeerConnection) *)
+    peerConnectionWithConfiguration:(RTC_OBJC_TYPE(RTCConfiguration) *)configuration
+                        constraints:(RTC_OBJC_TYPE(RTCMediaConstraints) *)constraints
+                           delegate:(nullable id<RTC_OBJC_TYPE(RTCPeerConnectionDelegate)>)delegate;
+
 /** Set the options to be used for subsequently created RTCPeerConnections */
 - (void)setOptions:(nonnull RTC_OBJC_TYPE(RTCPeerConnectionFactoryOptions) *)options;
 

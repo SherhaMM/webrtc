@@ -304,6 +304,28 @@
                                                 observer:observer];
 }
 
+- (RTC_OBJC_TYPE(RTCPeerConnection) *)
+    peerConnectionWithConfiguration:(RTC_OBJC_TYPE(RTCConfiguration) *)configuration
+                        constraints:(RTC_OBJC_TYPE(RTCMediaConstraints) *)constraints
+                           delegate:
+                               (nullable id<RTC_OBJC_TYPE(RTCPeerConnectionDelegate)>)delegate {
+  return [[RTC_OBJC_TYPE(RTCPeerConnection) alloc] initWithFactory:self
+                                                     configuration:configuration
+                                                       constraints:constraints
+                                                          delegate:delegate];
+}
+- (RTC_OBJC_TYPE(RTCPeerConnection) *)
+    peerConnectionWithDependencies:(RTC_OBJC_TYPE(RTCConfiguration) *)configuration
+                       constraints:(RTC_OBJC_TYPE(RTCMediaConstraints) *)constraints
+                      dependencies:(std::unique_ptr<webrtc::PeerConnectionDependencies>)dependencies
+                          delegate:(id<RTC_OBJC_TYPE(RTCPeerConnectionDelegate)>)delegate {
+  return [[RTC_OBJC_TYPE(RTCPeerConnection) alloc] initWithDependencies:self
+                                                          configuration:configuration
+                                                            constraints:constraints
+                                                           dependencies:std::move(dependencies)
+                                                               delegate:delegate];
+}
+
 - (void)setOptions:(nonnull RTC_OBJC_TYPE(RTCPeerConnectionFactoryOptions) *)options {
   RTC_DCHECK(options != nil);
   _nativeFactory->SetOptions(options.nativeOptions);
